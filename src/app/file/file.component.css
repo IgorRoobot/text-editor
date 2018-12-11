@@ -13,8 +13,24 @@
   background-color: #fff;
   border: 1px solid #e4dede;
   padding: 20px;
+  position: relative;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.synonyms ul {
+  list-style: none;
+  height: 86px;
+  overflow-y:scroll 
+}
+
+.synonyms li {
+  cursor: pointer;
+  line-height: 24px;
+}
+
+.synonyms li:hover {
+  color: rgb(28, 88, 110);
 }

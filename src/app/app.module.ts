@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { TextService } from './text-service/text.service';
 import { WOverllayComponent } from './w-overllay/w-overllay.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SynonymsService } from './synonyms.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { WOverllayComponent } from './w-overllay/w-overllay.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [TextService],
+  providers: [TextService, SynonymsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

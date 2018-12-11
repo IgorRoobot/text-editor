@@ -1,3 +1,13 @@
 <div class="file">
-  <app-w-overllay *ngFor="let text of text;" (click)="someFun($event)"> {{text}}</app-w-overllay>
+  <app-w-overllay *ngFor="let text of text;" (click)="someFun($event)"> 
+    {{text}}
+    
+  </app-w-overllay>
+  
+  <div *ngIf="synonyms" class="synonyms">
+    <h2>Available synonyms</h2>
+    <ul>
+      <li *ngFor="let item of synonyms" (click)="selectedWord(item.word)">{{ item.word }}</li>
+    </ul>
+  </div>
 </div>

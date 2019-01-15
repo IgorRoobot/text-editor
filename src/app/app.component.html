@@ -1,5 +1,5 @@
 <app-header [title]="title"></app-header>
 <main>
-  <app-control-panel (controlEvent)="getControlEvent($event)"></app-control-panel>
+  <app-control-panel (controlEvent)="getControlEvent($event.style)"></app-control-panel>
   <app-file ></app-file>
 </main>

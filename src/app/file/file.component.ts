@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {Component, OnInit, HostListener, AfterContentInit} from '@angular/core';
 import { TextService } from '../text-service/text.service';
 import { SynonymsService } from '../synonyms.service';
 
@@ -7,7 +7,7 @@ import { SynonymsService } from '../synonyms.service';
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.css']
 })
-export class FileComponent implements OnInit {
+export class FileComponent implements OnInit, AfterContentInit {
   public text:Array<any> = [];
   public selectedComponent:any = null;
   public style: string = '';
@@ -18,14 +18,14 @@ export class FileComponent implements OnInit {
               private synService: SynonymsService) {
   }
 
-  change(style) {
+  change(style){
     this.style = style;
     switch(style) {
       case 'Bold':
-        this.selectedComponent.style.fontWeight=style;   
+        this.selectedComponent.style.fontWeight=style;
         break;
       case 'Italic':
-        this.selectedComponent.style.fontStyle=style; 
+        this.selectedComponent.style.fontStyle=style;
         break;
       case 'Underline':
         this.selectedComponent.style.textDecoration=style;   
@@ -34,27 +34,34 @@ export class FileComponent implements OnInit {
         this.selectedComponent.style.color='black';   
         break;
     }
+    return this.style;
   }
 
   ngOnInit() {
+    this.textService.getMockText().then((result) => {
+      return result;
+    });
+  }
+  ngAfterContentInit() {
     this.textService.getMockText().then((result) => {
       this.splitText(result);
     });
   }
 
-  someFun(event) {
-    this.selectedComponent = event.target;
+  someFun(target) {
+    let syn;
+    this.selectedComponent = target;
     this.selectedComponent.style.color = "blue";
-
-    this.toggle ? this.toggle = false : this.toggle = true;
     this.synService.getSynonyms(this.selectedComponent.textContent.trim().replace(/[\.\,]/g, "")).subscribe(res => {
-      this.synonyms = res;
+      this.synonyms = syn = res;
     });
+    return syn || this.synonyms;
   }
 
   splitText(text) {
     const textArr = text.split(" ");
     this.text = textArr;
+    return this.text;
   }
 
   selectedWord(word) {

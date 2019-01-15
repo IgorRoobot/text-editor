@@ -1,8 +1,10 @@
 <div class="file">
-  <app-w-overllay *ngFor="let text of text;" (click)="someFun($event)"> 
-    {{text}}
-    
-  </app-w-overllay>
+  <span>
+    <app-w-overllay *ngFor="let text of text;" (click)="someFun($event.target)">
+      {{text}}
+
+    </app-w-overllay>
+  </span>
   
   <div *ngIf="synonyms" class="synonyms">
     <h2>Available synonyms</h2>

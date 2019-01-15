@@ -10,9 +10,7 @@ export class AppComponent {
   title = 'Simple Text Editor';
   @ViewChild(FileComponent) fileComponentLink: FileComponent;
 
-  getControlEvent(event) {
-    this.fileComponentLink.change(event.style);
+  getControlEvent(style:string) {
+    return this.fileComponentLink.change(style);
   }
-
-
 }

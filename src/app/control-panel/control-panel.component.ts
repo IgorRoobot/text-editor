@@ -17,7 +17,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   click($event, style) {
-    console.log("control", $event, style)
-    this.controlEvent.emit({$event, style});
+    return this.controlEvent.emit({$event, style});
   }
 }
